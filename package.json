@@ -11,6 +11,8 @@
     "typescript": "^4.4.4"
   },
   "dependencies": {
+    "@rollup/plugin-terser": "^0.4.0",
+    "rollup-plugin-typescript2": "^0.34.1",
     "@tarojs/taro": "^3.6.2",
     "lodash-es": "^4.17.21",
     "qs": "^6.11.0"

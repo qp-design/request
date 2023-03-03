@@ -9,7 +9,7 @@ export default {
       file: 'dist/index.js',
     }
   ],
-  external: ['@tarojs/taro', 'lodash-es', 'qs'],
+  external: ['@tarojs/taro', 'lodash-es', 'qs', '@brushes/utils'],
   plugins: [
     ts({}),
     terser(),

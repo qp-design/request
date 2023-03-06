@@ -1,18 +1,19 @@
 import getFly from './getFly';
-import { isWechat, getStorage, getUrl, getKey, getTokenValueKey } from '@/utils';
+import { getStorage, getKey, getTokenValueKey } from '@brushes/utils';
+import { isWechat } from '@/utils';
 import { errorImpl } from '@/shared/errorImpl';
 
 const Fly = getFly();
 const fly = new Fly();
 const isWeapp = isWechat();
 
+const key = getKey();
+const token = getTokenValueKey();
+
 //添加请求拦截器
 fly.interceptors.request.use(async (request: { baseURL: string | undefined; headers: { [x: string]: any }; body: any }) => {
   //给所有请求添加自定义header
-  const key = getKey();
-  const valueKey = getTokenValueKey();
-  request.baseURL = getUrl();
-  request.headers[key] = await getStorage(valueKey);
+  request.headers[key] = await getStorage(token);
   if (isWeapp) {
     request.headers['Saas-Agent'] = 'qj-wemini';
   }

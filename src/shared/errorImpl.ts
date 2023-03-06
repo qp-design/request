@@ -1,5 +1,5 @@
 import { wxLogin } from './wxLogin';
-import { getKey, getTaro, getEnv, removeStorage } from '@/utils';
+import { getKey, getTaro, getEnv, removeStorage } from '@brushes/utils';
 import { message } from './message';
 
 function initFunc() {

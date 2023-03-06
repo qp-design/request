@@ -1,5 +1,5 @@
 import { get } from 'lodash-es';
-import { getTaro, getUrl } from '@/utils';
+import { getTaro } from '@brushes/utils';
 
 let isNeedLogin = false;
 
@@ -8,7 +8,6 @@ let requestList: Array<any> = [];
 
 export async function wxLogin(options: any, fly: any) {
   const Taro = await getTaro();
-  const baseUrl = getUrl();
   return new Promise((resolve, reject) => {
     requestList.push({
       handler: () => fly.request(options),
@@ -16,13 +15,14 @@ export async function wxLogin(options: any, fly: any) {
     });
     if (!isNeedLogin) {
       isNeedLogin = true;
+      const { baseURL } = options;
       Taro.login({
         success: async function (result: { code: string }) {
           const response = await Taro.request({
             header: {
               'Saas-Agent': 'qj-wemini' // 默认值
             },
-            url: baseUrl + 'web/ml/mlogin/warrantyLogin.json',
+            url: baseURL + 'web/ml/mlogin/warrantyLogin.json',
             data: {
               js_code: result.code
             }

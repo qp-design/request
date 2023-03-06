@@ -9,32 +9,3 @@ export const isWechat = function () {
     return false;
   }
 };
-
-export function getEnv() {
-  const ua = navigator.product;
-  return ua.indexOf('Taro') !== -1;
-}
-
-export function getKey() {
-  try {
-    return process.env.REACT_APP_SESSION_KEY || 'saas-token';
-  } catch (err) {
-    return 'saas-token';
-  }
-}
-
-export function getTokenValueKey() {
-  try {
-    return process.env.REACT_APP_SESSION_VALUE_KEY || 'saas-token';
-  } catch (err) {
-    return 'saas-token';
-  }
-}
-
-export function getUrl() {
-  try {
-    return process.env.REACT_APP_BASE_URL || '';
-  } catch (err) {
-    return '';
-  }
-}

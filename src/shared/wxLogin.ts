@@ -1,13 +1,11 @@
 import { get } from 'lodash-es';
-import { getTaro } from '@brushes/utils';
 
 let isNeedLogin = false;
 
 // 失败请求队列
 let requestList: Array<any> = [];
 
-export async function wxLogin(options: any, fly: any) {
-  const Taro = await getTaro();
+export async function wxLogin(options: any, fly: any, Taro: any) {
   return new Promise((resolve, reject) => {
     requestList.push({
       handler: () => fly.request(options),

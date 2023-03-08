@@ -10,7 +10,10 @@ function initFunc() {
     if (data.errorCode === 'nologin') {
       const key = getKey();
       await removeStorage(key);
-      return await wxLogin(options, fly);
+      if (Taro.getEnv() === 'WEAPP') {
+        return await wxLogin(options, fly, Taro);
+      }
+      // 自定义登录页面
     }
     Taro.showToast({
       title: data.msg || '接口失败',

@@ -53,8 +53,10 @@ export async function wxLogin(options: any, fly: any, Taro: any) {
             return;
           }
 
-          const token = get(res, 'dataObj.userInfo', '{}');
+          const userInfo = get(res, 'dataObj.userInfo', '{}');
+          const token = JSON.parse(userInfo).ticketTokenid;
           Taro.setStorageSync('saas-token', token);
+          Taro.setStorageSync('user-info', userInfo);
           errorCallback(requestList);
         },
         complete: function () {

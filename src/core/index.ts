@@ -19,6 +19,7 @@ export const postFormData = (url: string, params = {}) =>
 export const post = (url: string, params = {}) => mockImpl(url, () => flyIo.post(url, qs.stringify(getParams(params))), params);
 
 const mockImpl = (url: string, callback: () => Promise<any>, params?: {}) => {
+  debugger;
   const { isLocalMock = '' } = params as any;
 
   if (!isLocalMock) {

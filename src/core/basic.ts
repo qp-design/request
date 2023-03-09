@@ -5,7 +5,6 @@ import { errorImpl } from '@/shared/errorImpl';
 
 const Fly = getFly();
 const fly = new Fly();
-const isWeapp = isWechat();
 
 const key = getKey();
 const token = getTokenValueKey();
@@ -15,7 +14,7 @@ fly.interceptors.request.use(async (request: { baseURL: string | undefined; head
   //给所有请求添加自定义header
   request.headers[key] = await getStorage(token);
   request.baseURL = getUrl();
-  if (isWeapp) {
+  if (isWechat) {
     request.headers['Saas-Agent'] = 'qj-wemini';
   }
   //打印出请求体

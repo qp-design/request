@@ -8,7 +8,7 @@ function initFunc() {
     const Taro = await getTaro();
     if (data.errorCode === 'nologin') {
       const key = getKey();
-      await removeStorage(key);
+      Taro.removeStorageSync(key);
       if (Taro.getEnv() === 'WEAPP') {
         return await wxLogin(options, fly, Taro);
       }

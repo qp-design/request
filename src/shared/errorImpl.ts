@@ -9,9 +9,8 @@ function initFunc() {
     if (data.errorCode === 'nologin') {
       const key = getKey();
       Taro.removeStorageSync(key);
-      if (Taro.getEnv() === 'WEAPP') {
-        return await wxLogin(options, fly, Taro);
-      }
+      await wxLogin(options, fly, Taro);
+      return;
       // 自定义登录页面
     }
     Taro.showToast({

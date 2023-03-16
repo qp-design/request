@@ -7,11 +7,11 @@ const Fly = getFly();
 const fly = new Fly();
 
 //添加请求拦截器
-fly.interceptors.request.use(async (request: { baseURL: string | undefined; headers: { [x: string]: any }; body: any }) => {
+fly.interceptors.request.use((request: { baseURL: string | undefined; headers: { [x: string]: any }; body: any }) => {
   //给所有请求添加自定义header
   const key = getKey();
   const token = getTokenValueKey();
-  request.headers[key] = await getStorage(token);
+  request.headers[key] = getStorage(token);
   request.baseURL = getUrl();
   if (isWechat) {
     request.headers['Saas-Agent'] = 'qj-wemini';

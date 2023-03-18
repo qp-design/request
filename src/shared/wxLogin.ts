@@ -67,8 +67,7 @@ function loginImpl(options: any, Taro: any, reject: any) {
       const isReister = get(res, 'dataObj.register', '') as string;
       const userOpenid = get(res, 'dataObj.userOpenid', '');
       Taro.setStorageSync('userOpenid', userOpenid);
-      console.log('69=========>', isReister);
-      if (isReister !== 'true') {
+      if (isReister === 'true') {
         // 去绑定
         Taro.navigateTo({
           url: '/append/bindIphone/index',

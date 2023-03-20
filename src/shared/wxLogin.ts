@@ -29,11 +29,7 @@ export async function wxLogin(options: any, fly: any, Taro: any) {
 //
 function webLogin(Taro: any) {
   Taro.navigateTo({
-    url: '/account/mobileLogin/index',
-    success: function () {
-      // 暂时方案
-      isNeedLogin = false;
-    }
+    url: '/account/mobileLogin/index'
   });
 }
 
@@ -98,3 +94,5 @@ export const errorCallback = () => {
   });
   requestList = [];
 };
+
+export const resetStatus = () => (isNeedLogin = false);

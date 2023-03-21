@@ -28,8 +28,14 @@ export async function wxLogin(options: any, fly: any, Taro: any) {
 }
 //
 function webLogin(Taro: any) {
-  Taro.navigateTo({
-    url: '/account/mobileLogin/index'
+  queueMicrotask(() => {
+    /* 微任务中将运行的代码 */
+    Taro.navigateTo({
+      url: '/account/mobileLogin/index',
+      success: () => {
+        isNeedLogin = false;
+      }
+    });
   });
 }
 
@@ -95,4 +101,6 @@ export const errorCallback = () => {
   requestList = [];
 };
 
-export const resetStatus = () => (isNeedLogin = false);
+export const resetStatus = () => {
+  isNeedLogin = false;
+};

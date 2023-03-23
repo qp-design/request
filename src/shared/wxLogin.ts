@@ -1,4 +1,4 @@
-import { get } from 'lodash-es';
+// import { get } from 'lodash-es';
 import { getTaroEnv } from '@/utils';
 
 let isNeedLogin = false;
@@ -17,13 +17,25 @@ export async function wxLogin(options: any, fly: any, Taro: any) {
       const taroEnv = getTaroEnv(Taro);
       switch (taroEnv) {
         case 'WEAPP':
-          loginImpl(options, Taro, reject);
+          // loginImpl(options, Taro, reject);
+          weappLogin(Taro);
           break;
         case 'WEB':
           webLogin(Taro);
           break;
       }
     }
+  });
+}
+function weappLogin(Taro: any) {
+  queueMicrotask(() => {
+    /* 微任务中将运行的代码 */
+    Taro.navigateTo({
+      url: '/account/auth/index',
+      success: () => {
+        isNeedLogin = false;
+      }
+    });
   });
 }
 //
@@ -39,58 +51,58 @@ function webLogin(Taro: any) {
   });
 }
 
-function loginImpl(options: any, Taro: any, reject: any) {
-  const { baseURL } = options;
-  Taro.login({
-    success: async function (result: { code: string }) {
-      const response = await Taro.request({
-        header: {
-          'Saas-Agent': 'qj-wemini' // 默认值
-        },
-        url: baseURL + 'web/ml/mlogin/warrantyLogin.json',
-        data: {
-          js_code: result.code
-        }
-      });
-
-      const res = response.data;
-      // 异常情况
-      if (!res.dataObj) {
-        // 登录错误
-        Taro.showToast({
-          title: '无法登录',
-          icon: 'error',
-          duration: 1500
-        });
-        reject();
-        return;
-      }
-
-      const isReister = get(res, 'dataObj.register', '') as string;
-      const userOpenid = get(res, 'dataObj.userOpenid', '');
-      Taro.setStorageSync('userOpenid', userOpenid);
-      if (isReister === 'true') {
-        // 去绑定
-        Taro.navigateTo({
-          url: '/append/bindIphone/index',
-          success: function (res: any) {
-            res.eventChannel.emit('handler', () => errorCallback());
-          }
-        });
-        return;
-      }
-
-      const userInfo = get(res, 'dataObj.userInfo', '{}');
-      const token = JSON.parse(userInfo).ticketTokenid;
-      Taro.setStorageSync('saas-token', token);
-      Taro.setStorageSync('user-info', userInfo);
-      errorCallback();
-    },
-    complete: function () {
-      isNeedLogin = false;
-    }
-  });
-}
+// function loginImpl(options: any, Taro: any, reject: any) {
+//   const { baseURL } = options;
+//   Taro.login({
+//     success: async function (result: { code: string }) {
+//       const response = await Taro.request({
+//         header: {
+//           'Saas-Agent': 'qj-wemini' // 默认值
+//         },
+//         url: baseURL + 'web/ml/mlogin/warrantyLogin.json',
+//         data: {
+//           js_code: result.code
+//         }
+//       });
+//
+//       const res = response.data;
+//       // 异常情况
+//       if (!res.dataObj) {
+//         // 登录错误
+//         Taro.showToast({
+//           title: '无法登录',
+//           icon: 'error',
+//           duration: 1500
+//         });
+//         reject();
+//         return;
+//       }
+//
+//       const isReister = get(res, 'dataObj.register', '') as string;
+//       const userOpenid = get(res, 'dataObj.userOpenid', '');
+//       Taro.setStorageSync('userOpenid', userOpenid);
+//       if (isReister === 'true') {
+//         // 去绑定
+//         Taro.navigateTo({
+//           url: '/append/bindIphone/index',
+//           success: function (res: any) {
+//             res.eventChannel.emit('handler', () => errorCallback());
+//           }
+//         });
+//         return;
+//       }
+//
+//       const userInfo = get(res, 'dataObj.userInfo', '{}');
+//       const token = JSON.parse(userInfo).ticketTokenid;
+//       Taro.setStorageSync('saas-token', token);
+//       Taro.setStorageSync('user-info', userInfo);
+//       errorCallback();
+//     },
+//     complete: function () {
+//       isNeedLogin = false;
+//     }
+//   });
+// }
 
 export const errorCallback = () => {
   requestList.forEach(async (item) => {

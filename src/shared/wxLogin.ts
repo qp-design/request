@@ -28,27 +28,27 @@ export async function wxLogin(options: any, fly: any, Taro: any) {
   });
 }
 function weappLogin(Taro: any) {
-  queueMicrotask(() => {
-    /* 微任务中将运行的代码 */
+  setTimeout(() => {
+    /* 任务中将运行的代码 */
     Taro.navigateTo({
       url: '/account/auth/index',
       success: () => {
         isNeedLogin = false;
       }
     });
-  });
+  }, 10);
 }
 //
 function webLogin(Taro: any) {
-  queueMicrotask(() => {
-    /* 微任务中将运行的代码 */
+  setTimeout(() => {
+    /* 任务中将运行的代码 */
     Taro.navigateTo({
       url: '/account/mobileLogin/index',
       success: () => {
         isNeedLogin = false;
       }
     });
-  });
+  }, 10);
 }
 
 // function loginImpl(options: any, Taro: any, reject: any) {

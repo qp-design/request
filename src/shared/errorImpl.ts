@@ -5,7 +5,7 @@ import { message } from './message';
 function initFunc() {
   const isTaro = getEnv();
   async function isTaroImpl(data: { msg: string; errorCode: string }, options: any, fly: any) {
-    const Taro = await getTaro();
+    const Taro = getTaro();
     if (data.errorCode === 'nologin') {
       const key = getKey();
       Taro.removeStorageSync(key);

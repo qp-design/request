@@ -9,8 +9,7 @@ function initFunc() {
     if (data.errorCode === 'nologin') {
       const key = getKey();
       Taro.removeStorageSync(key);
-      await wxLogin(options, fly, Taro);
-      return;
+      return await wxLogin(options, fly, Taro);
       // 自定义登录页面
     }
     Taro.showToast({

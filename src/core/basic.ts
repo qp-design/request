@@ -1,5 +1,5 @@
 import { getFly } from './getFly';
-import { getKey, getTokenValueKey, getStorage, getBaseUrl } from '@brushes/utils';
+import { getKey, getTokenValueKey, getStorage, getBaseUrl, getH5Platform } from '@brushes/utils';
 import { isWechat } from '@/utils';
 import { errorImpl } from '@/shared/errorImpl';
 
@@ -11,6 +11,10 @@ fly.interceptors.request.use((request: { baseURL: string | undefined; headers: {
   const token = getTokenValueKey();
   request.headers[key] = getStorage(token);
   request.baseURL = getBaseUrl();
+  const isH5 = getH5Platform();
+  if (isH5) {
+    request.headers['Saas-Agent'] = isH5;
+  }
   if (isWechat) {
     request.headers['Saas-Agent'] = 'qj-wemini';
   }

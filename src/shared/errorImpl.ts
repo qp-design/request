@@ -12,9 +12,10 @@ function initFunc() {
       return await wxLogin(options, fly, Taro);
       // 自定义登录页面
     }
+    const msg = data.msg || '接口失败';
     Taro.showToast({
-      title: data.msg || '接口失败',
-      icon: 'error',
+      title: msg,
+      icon: msg.length > 7 ? 'none' : 'error',
       duration: 1000
     });
     return Promise.reject(data.msg || '接口失败');

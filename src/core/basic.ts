@@ -26,7 +26,6 @@ fly.interceptors.response.use(
   async (response: { data: any; request: any; engine: any }) => {
     //只将请求结果的data字段返回
     const data = response.data;
-    console.log('Error engine:', response.engine);
     if (isError(data)) {
       return await errorImpl(data, response.request, fly);
     }

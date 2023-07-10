@@ -1,6 +1,5 @@
 import { getFly } from './getFly';
 import { getKey, getTokenValueKey, getStorage, getBaseUrl, getH5Platform } from '@brushes/utils';
-import { isWechat } from '@/utils';
 import { errorImpl } from '@/shared/errorImpl';
 
 const fly = getFly();
@@ -15,17 +14,6 @@ fly.interceptors.request.use((request: { baseURL: string | undefined; headers: {
   if (isH5) {
     request.headers['Saas-Agent'] = isH5;
   }
-  if (isWechat) {
-    request.headers['Saas-Agent'] = 'qj-wemini';
-  }
-  //打印出请求体
-  // console.log(request.body);
-  //终止请求
-  //var err=new Error("xxx")
-  //err.request=request
-  //return Promise.reject(new Error(""))
-
-  //可以显式返回request, 也可以不返回，没有返回值时拦截器中默认返回request
   return request;
 });
 
@@ -35,10 +23,10 @@ const isError = (data: any) => {
 
 //添加响应拦截器，响应拦截器会在then/catch处理之前执行
 fly.interceptors.response.use(
-  async (response: { data: any; request: any }) => {
+  async (response: { data: any; request: any; engine: any }) => {
     //只将请求结果的data字段返回
     const data = response.data;
-
+    console.log('Error engine:', response.engine);
     if (isError(data)) {
       return await errorImpl(data, response.request, fly);
     }

@@ -1,5 +1,8 @@
+//@ts-nocheck
 import flyIo from './basic';
 import * as qs from 'qs';
+import EngineWrapper from 'flyio/dist/npm/engine-wrapper';
+import adapter from 'flyio/src/adapter/wx';
 import { formDataTrans, getParams } from '@brushes/utils';
 import { host } from '@/config';
 export const postWithJson = (url: string, params = {}) => mockImpl(url, () => flyIo.post(url, getParams(params)), params);
@@ -35,3 +38,7 @@ const mockImpl = (url: string, callback: () => Promise<any>, params?: {}) => {
 };
 
 export const fly = flyIo;
+
+export function wxEngine() {
+  flyIo.engine = EngineWrapper(adapter);
+}

@@ -8,7 +8,7 @@ export default {
       file: 'dist/index.js',
     }
   ],
-  external: ['@tarojs/taro', 'lodash-es', 'qs', '@brushes/utils', 'flyio/dist/npm/wx', 'flyio/dist/npm/fly'],
+  external: ['lodash-es', 'qs', '@brushes/utils', 'flyio/src/adapter/wx', 'flyio/dist/npm/engine-wrapper', 'flyio/dist/npm/fly'],
   plugins: [
     ts({}),
     terser(),

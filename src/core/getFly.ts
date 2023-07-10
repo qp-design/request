@@ -1,7 +1,10 @@
+//@ts-nocheck
 import { isWechat } from '@/utils';
+import wx from 'flyio/dist/npm/wx';
+import web from 'flyio/dist/npm/fly';
+
 function getFlyEngine() {
-  const path = isWechat ? 'flyio/dist/npm/wx' : 'flyio/dist/npm/fly';
-  return require(path);
+  return isWechat ? wx : web;
 }
 
 export const getFly = () => {

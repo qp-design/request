@@ -1,7 +1,8 @@
-const taroEnv = '';
+let taroEnv = '';
 export function getTaroEnv(Taro: any) {
   if (!taroEnv) {
-    return Taro.getEnv();
+    taroEnv = Taro.getEnv();
+    return taroEnv
   }
   return taroEnv;
 }

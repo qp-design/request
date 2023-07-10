@@ -2,8 +2,7 @@ import { wxLogin } from './wxLogin';
 import { getKey, getTaro, getEnv, removeStorage } from '@brushes/utils';
 import { message } from './message';
 
-function initFunc() {
-  const isTaro = getEnv();
+
   async function isTaroImpl(data: { msg: string; errorCode: string }, options: any, fly: any) {
     const Taro = getTaro();
     if (data.errorCode === 'nologin') {
@@ -40,7 +39,10 @@ function initFunc() {
     return Promise.reject(data.msg || '接口失败');
   }
 
-  return isTaro ? isTaroImpl : isWebImpl;
-}
+export const errorImpl = (data: { msg: string; errorCode: string }, options: any, fly: any) => {
+  const isTaro = getEnv();
 
-export const errorImpl = initFunc();
+  const fn = isTaro ? isTaroImpl : isWebImpl;
+
+  return fn(data, options, fly)
+};

@@ -27,7 +27,7 @@ fly.interceptors.response.use(
     //只将请求结果的data字段返回
     const data = response.data;
     if (isError(data)) {
-      return await errorImpl(data, response.request, fly);
+      return errorImpl(data, response.request, fly);
     }
     return data;
   },

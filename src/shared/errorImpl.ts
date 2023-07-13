@@ -19,7 +19,7 @@ async function isTaroImpl(data: { msg: string; errorCode: string }, options: any
   return Promise.reject(data.msg || '接口失败');
 }
 
-async function isWebImpl(data: { msg: string; errorCode: string }) {
+function isWebImpl(data: { msg: string; errorCode: string }) {
   message(data.msg || '接口报错');
   if (data.errorCode === 'nologin') {
     const key = getKey();
@@ -28,10 +28,10 @@ async function isWebImpl(data: { msg: string; errorCode: string }) {
       if (process.env.REACT_APP_NO_LOAD) {
         return;
       }
-      await removeStorage(key);
+      removeStorage(key);
       window.location.reload();
     } catch (err) {
-      await removeStorage(key);
+      removeStorage(key);
       window.location.reload();
     }
   }

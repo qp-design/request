@@ -9,10 +9,10 @@
   },
   "devDependencies": {
     "@types/node": "^18.14.5",
-    "@types/qs": "6.5.3"
+    "@types/qs": "6.5.3",
+    "@brushes/utils": "latest"
   },
   "dependencies": {
-    "@brushes/utils": "latest",
     "flyio": "^0.6.14",
     "lodash-es": "^4.17.21",
     "qs": "6.5.3"

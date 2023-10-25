@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { getFly } from './getFly';
 import { getKey, getTokenValueKey, getStorage, getBaseUrl, getH5Platform } from '@brushes/utils';
 import { errorImpl } from '@/shared/errorImpl';

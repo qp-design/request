@@ -1,4 +1,3 @@
-// import { get } from 'lodash-es';
 import { getTaroEnv } from '@/utils';
 
 let isNeedLogin = false;
@@ -15,6 +14,7 @@ export async function wxLogin(options: any, fly: any, Taro: any) {
     if (!isNeedLogin) {
       isNeedLogin = true;
       const taroEnv = getTaroEnv(Taro);
+      console.log(18, taroEnv);
       switch (taroEnv) {
         case 'WEAPP':
           // loginImpl(options, Taro, reject);
@@ -31,10 +31,7 @@ function weappLogin(Taro: any) {
   setTimeout(() => {
     /* 任务中将运行的代码 */
     Taro.navigateTo({
-      url: '/account/auth/index',
-      success: () => {
-        isNeedLogin = false;
-      }
+      url: '/account/auth/index'
     });
   }, 10);
 }
@@ -43,10 +40,7 @@ function webLogin(Taro: any) {
   setTimeout(() => {
     /* 任务中将运行的代码 */
     Taro.navigateTo({
-      url: '/account/mobileLogin/index',
-      success: () => {
-        isNeedLogin = false;
-      }
+      url: '/account/mobileLogin/index'
     });
   }, 10);
 }

@@ -7,7 +7,6 @@ async function isTaroImpl(data: { msg: string; errorCode: string }, options: any
   if (data.errorCode === 'nologin') {
     const key = getKey();
     Taro.removeStorageSync(key);
-    console.log(10, Taro);
     return await wxLogin(options, fly, Taro);
     // 自定义登录页面
   }

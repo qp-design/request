@@ -99,6 +99,7 @@ function webLogin(Taro: any) {
 // }
 
 export const errorCallback = () => {
+  resetStatus();
   requestList.forEach(async (item) => {
     const resolve = item.resolve;
     const data = await item.handler();

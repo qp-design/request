@@ -1,6 +1,6 @@
 {
   "name": "@brushes/request",
-  "version": "0.2.91",
+  "version": "0.2.92",
   "type": "module",
   "main": "dist/index.js",
   "license": "MIT",

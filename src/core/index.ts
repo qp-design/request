@@ -1,9 +1,9 @@
 //@ts-nocheck
 import flyIo from './basic';
-const qs = require('qs');
-const EngineWrapper = require('flyio/dist/npm/engine-wrapper');
+import * as qs from 'qs';
+import EngineWrapper from 'flyio/dist/npm/engine-wrapper';
 import adapter from 'flyio/src/adapter/wx';
-import { formDataTrans, getParams } from '@brushes/utils';
+import { formDataTrans, getParams } from '../tools';
 import { host } from '@/config';
 export const postWithJson = (url: string, params = {}) => mockImpl(url, () => flyIo.post(url, getParams(params)), params);
 

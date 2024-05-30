@@ -1,5 +1,5 @@
 import { wxLogin } from './wxLogin';
-import { getKey, getTaro, getEnv, removeStorage } from '@brushes/utils';
+import { getKey, getTaro, getEnv, removeStorage } from '../tools';
 import { message } from './message';
 
 async function isTaroImpl(data: { msg: string; errorCode: string }, options: any, fly: any) {

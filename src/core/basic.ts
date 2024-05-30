@@ -1,6 +1,5 @@
-//@ts-nocheck
 import { getFly } from './getFly';
-import { getKey, getTokenValueKey, getStorage, getBaseUrl, getH5Platform } from '@brushes/utils';
+import { getKey, getTokenValueKey, getStorage, getBaseUrl, getH5Platform } from '../tools';
 import { errorImpl } from '@/shared/errorImpl';
 
 const fly = getFly();
@@ -9,7 +8,9 @@ fly.interceptors.request.use((request: { baseURL: string | undefined; headers: {
   //给所有请求添加自定义header
   const key = getKey();
   const token = getTokenValueKey();
-  request.headers[key] = getStorage(token);
+  if (key) {
+    request.headers[key] = getStorage(token);
+  }
   request.baseURL = getBaseUrl();
   const isH5 = getH5Platform();
   if (isH5) {
@@ -17,7 +18,6 @@ fly.interceptors.request.use((request: { baseURL: string | undefined; headers: {
   }
   return request;
 });
-
 const isError = (data: any) => {
   return data.errorCode || data.success === false;
 };

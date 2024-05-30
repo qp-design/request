@@ -1,7 +1,6 @@
 {
   "name": "@brushes/request",
-  "version": "0.2.92",
-  "type": "module",
+  "version": "0.3.2",
   "main": "dist/index.js",
   "license": "MIT",
   "scripts": {
@@ -9,9 +8,9 @@
     "start": "rollup -c -w"
   },
   "devDependencies": {
-    "@brushes/utils": "latest",
-    "@rollup/plugin-commonjs": "^25.0.7",
+    "@rollup/plugin-commonjs": "^25.0.8",
     "@types/node": "^18.14.5",
+    "@types/qs": "^6.9.9",
     "lodash-es": "^4.17.21"
   },
   "dependencies": {

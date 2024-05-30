@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { isEmpty } from 'lodash-es';
 let Taro = {} as any;
 

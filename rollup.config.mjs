@@ -6,7 +6,6 @@ export default {
     {
       name: 'request-index',
       file: 'dist/index.js',
-      format: 'umd'
     }
   ],
   external: ['lodash-es', 'qs', '@brushes/utils', 'flyio/src/adapter/wx', 'flyio/dist/npm/engine-wrapper', 'flyio/dist/npm/fly'],

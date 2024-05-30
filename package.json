@@ -8,7 +8,6 @@
     "start": "rollup -c -w"
   },
   "devDependencies": {
-    "@rollup/plugin-commonjs": "^25.0.8",
     "@types/node": "^18.14.5",
     "@types/qs": "^6.9.9",
     "lodash-es": "^4.17.21"

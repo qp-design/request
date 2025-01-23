@@ -1,6 +1,6 @@
 export function getKey() {
   try {
-    return process.env.REACT_APP_SESSION_KEY || '';
+    return process.env.REACT_APP_SESSION_KEY || 'saas-token';
   } catch (err) {
     return 'saas-token';
   }
@@ -8,7 +8,7 @@ export function getKey() {
 
 export function getTokenValueKey() {
   try {
-    return process.env.REACT_APP_SESSION_VALUE_KEY || '';
+    return process.env.REACT_APP_SESSION_VALUE_KEY || 'saas-token';
   } catch (err) {
     return 'saas-token';
   }

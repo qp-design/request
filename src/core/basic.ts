@@ -1,5 +1,5 @@
 import { getFly } from './getFly';
-import { getKey, getTokenValueKey, getStorage, getBaseUrl, getH5Platform } from '../tools';
+import { getKey, getTokenValueKey, getStorage, getBaseUrl, getH5Platform, getSessionStorage } from '../tools';
 import { errorImpl } from '@/shared/errorImpl';
 
 const fly = getFly();
@@ -9,7 +9,7 @@ fly.interceptors.request.use((request: { baseURL: string | undefined; headers: {
   const key = getKey();
   const token = getTokenValueKey();
   if (key) {
-    request.headers[key] = getStorage(token);
+    request.headers[key] = getSessionStorage(token) || getStorage(token);
   }
   request.baseURL = getBaseUrl();
   const isH5 = getH5Platform();

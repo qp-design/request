@@ -2,6 +2,30 @@ import { getTaro } from './taroBase';
 /**
  * 获取
  */
+export const getSessionStorageWeb = (key: string) => {
+  const val: string = window.sessionStorage.getItem(key) || '';
+  try {
+    return JSON.parse(val);
+  } catch (e) {
+    return val;
+  }
+};
+
+export const getSessionStorage = (key: string) => {
+  try {
+    if (sessionStorage) {
+      return getSessionStorageWeb(key);
+    }
+    const Taro = getTaro();
+    return Taro.getStorageSync(key);
+  } catch (err) {
+    return '';
+  }
+};
+
+/**
+ * 获取
+ */
 export const getStorageWeb = (key: string) => {
   const val: string = window.localStorage.getItem(key) || '';
   try {
@@ -43,6 +67,7 @@ export const setStorage = (key: string, obj: any) => {
 export const removeStorage = (key: string) => {
   if (localStorage) {
     window.localStorage.removeItem(key);
+    window.sessionStorage.removeItem(key);
   } else {
     const Taro = getTaro();
     Taro.removeStorageSync(key);
